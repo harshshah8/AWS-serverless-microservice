@@ -67,17 +67,15 @@ def lambda_handler(event, context):
     
     dynamo_obj = boto3.resource('dynamodb').Table(body['tableName'])
     
-    operations = {
+    methods = {
         'create': lambda x: dynamo_obj.put_item(**x),
         'read': lambda x: dynamo_obj.get_item(**x),
         'update': lambda x: dynamo_obj.update_item(**x),
         'delete': lambda x: dynamo_obj.delete_item(**x),
         'list': lambda x: dynamo_obj.scan(**x),
-        'echo': lambda x: x,
-        'ping': lambda x: 'pong'
     }
     
-    if operation in operations:
+    if operation in methods:
         return operations[operation](body.get('payload'))
     else:
         raise ValueError(f"Unrecognized method {operation}")
