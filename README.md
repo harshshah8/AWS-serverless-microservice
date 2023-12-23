@@ -82,7 +82,7 @@ def lambda_handler(event, context):
     else:
         raise ValueError(f"Unrecognized method {operation}")
 ```
-### For set-up read this article: 
+### For set-up read this article: https://medium.com/@harshshah692/introduction-to-aws-lambda-function-url-d036fb805e84
 
 
 
